@@ -1,5 +1,5 @@
 {
-  "name": "project-4",
+  "name": "next-auth",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -17,6 +17,8 @@
   },
   "dependencies": {
     "@styled-icons/material-outlined": "^10.28.0",
+    "graphql": "^15.5.1",
+    "graphql-request": "^3.5.0",
     "next": "^11.0.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
