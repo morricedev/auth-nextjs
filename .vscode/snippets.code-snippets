@@ -1,0 +1,79 @@
+{
+	"Styled Default": {
+		"prefix": "styled",
+		"body": [
+			"import styled, { css } from 'styled-components';",
+			"",
+			"export const Wrapper = styled.div`",
+			"\t${({ theme }) => css``}",
+			"`;",
+			""
+		],
+		"description": "Log output to console"
+	},
+	"component react": {
+		"prefix": "component react",
+		"body": [
+			"import * as Styled from './styles';",
+			"",
+			"export type $1Props = {",
+			"\ttitle?: string;",
+			"};",
+			"",
+			"export const $1 = ({ title }: $1Props) => {",
+			"\treturn (",
+			"\t\t<Styled.Wrapper>",
+			"\t\t\t<h1>Oi</h1>",
+			"\t\t\t<p>{title}</p>",
+			"\t\t</Styled.Wrapper>",
+			"\t);",
+			"};",
+			""
+		],
+		"description": "Component React"
+	},
+	"Story react": {
+		"prefix": "story react",
+		"body": [
+			"import { Meta, Story } from '@storybook/react/types-6-0';",
+			"import { $1, $1Props } from '.';",
+			"",
+			"export default {",
+			"\ttitle: '$1',",
+			"\tcomponent: $1,",
+			"} as Meta<$1Props>;",
+			"",
+			"export const Template: Story<$1Props> = (args) => {",
+			"\treturn (",
+			"\t\t<div>",
+			"\t\t\t<$1 {...args} />",
+			"\t\t</div>",
+			"\t);",
+			"};",
+			""
+		],
+		"description": "Story React"
+	},
+	"Test react": {
+		"prefix": "test react",
+		"body": [
+			"import { screen } from '@testing-library/react';",
+			"import { renderTheme } from '../../styles/render-theme';",
+			"import { $1, $1Props } from '.';",
+			"",
+			"const props: $1Props = {",
+			"\ttitle: 'any',",
+			"};",
+			"",
+			"describe('<$1 />', () => {",
+			"\tit('should render', () => {",
+			"\t\trenderTheme(<$1 {...props} />);",
+			"",
+			"\t\texpect(screen.getByRole('heading', { name: 'Oi' })).toBeInTheDocument();",
+			"\t});",
+			"});",
+			""
+		],
+		"description": "Test React"
+	}
+}
