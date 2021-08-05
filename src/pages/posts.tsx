@@ -2,7 +2,7 @@ import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/client';
 import { PrivateComponent } from '../components/PrivateComponent';
 
-import { PostsTemplate } from '../template/Posts';
+import { PostsTemplate } from '../templates/Posts';
 import { gqlClient } from '../graphql/client';
 import { GQL_QUERY_GET_POSTS } from '../graphql/queries/post';
 import { serverSideRedirect } from '../utils/serverSideRedirect';

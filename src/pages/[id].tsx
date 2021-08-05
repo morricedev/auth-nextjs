@@ -3,7 +3,7 @@ import { getSession } from 'next-auth/client';
 import { PrivateComponent } from '../components/PrivateComponent';
 import { gqlClient } from '../graphql/client';
 import { GQL_QUERY_GET_POST } from '../graphql/queries/post';
-import { UpdatePostTemplate } from '../template/UpdatePost';
+import { UpdatePostTemplate } from '../templates/UpdatePost';
 import { serverSideRedirect } from '../utils/serverSideRedirect';
 import { StrapiPost } from './posts';
 

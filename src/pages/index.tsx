@@ -1,6 +1,6 @@
 import { GetServerSideProps } from 'next';
 import { PrivateComponent } from '../components/PrivateComponent';
-import { HomeTemplate } from '../template/Home';
+import { HomeTemplate } from '../templates/Home';
 
 export default function Index() {
   return (
