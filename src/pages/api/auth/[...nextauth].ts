@@ -11,6 +11,11 @@ type NextAuthSession = {
   expiration: number;
 };
 
+type NextCredentials = {
+  email: string;
+  password: string;
+};
+
 export default NextAuth({
   jwt: {
     signingKey: process.env.JWT_SIGNING_PRIVATE_KEY,
@@ -24,13 +29,12 @@ export default NextAuth({
     Providers.Credentials({
       name: 'Credentials',
 
-      credentials: {
-        email: { label: 'Email or username' },
-        password: { label: 'Password', type: 'password' },
-      },
-      async authorize(credentials) {
+      credentials: {},
+      async authorize(credentials: NextCredentials) {
+        const { email, password } = credentials;
+        if (!email || !password) return null;
+
         try {
-          const { email, password } = credentials;
           const { login } = await gqlClient.request(
             GQL_MUTATION_AUTHENTICATE_USER,
             {
