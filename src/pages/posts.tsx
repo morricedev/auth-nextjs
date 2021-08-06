@@ -92,7 +92,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const { posts } = await gqlClient.request(GQL_QUERY_GET_POSTS, null, {
       Authorization: `Bearer ${session.accessToken}`,
     });
-    console.log(posts);
 
     return {
       props: {
