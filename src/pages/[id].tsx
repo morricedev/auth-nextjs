@@ -1,10 +1,9 @@
 import { GetServerSideProps } from 'next';
-import { getSession } from 'next-auth/client';
 import { PrivateComponent } from '../components/PrivateComponent';
 import { gqlClient } from '../graphql/client';
 import { GQL_QUERY_GET_POST } from '../graphql/queries/post';
 import { UpdatePostTemplate } from '../templates/UpdatePost';
-import { serverSideRedirect } from '../utils/serverSideRedirect';
+import { privateServerSideProps } from '../utils/privateServerSideProps';
 import { StrapiPost } from './posts';
 
 export type PostPageProps = {
@@ -20,31 +19,30 @@ export default function PostPage({ post }: PostPageProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const session = await getSession(ctx);
+  return await privateServerSideProps(ctx, async (session) => {
+    const { id } = ctx.params;
 
-  const { id } = ctx.params;
+    try {
+      const { post } = await gqlClient.request(
+        GQL_QUERY_GET_POST,
+        { id },
+        {
+          Authorization: `Bearer ${session.accessToken}`,
+        },
+      );
 
-  if (!session) {
-    return serverSideRedirect(ctx);
-  }
-
-  try {
-    const { post } = await gqlClient.request(
-      GQL_QUERY_GET_POST,
-      { id },
-      {
-        Authorization: `Bearer ${session.accessToken}`,
-      },
-    );
-    console.log(post);
-
-    return {
-      props: {
-        session,
-        post,
-      },
-    };
-  } catch (error) {
-    return serverSideRedirect(ctx);
-  }
+      return {
+        props: {
+          session,
+          post,
+        },
+      };
+    } catch (error) {
+      return {
+        props: {
+          session,
+        },
+      };
+    }
+  });
 };

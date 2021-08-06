@@ -25,6 +25,14 @@ export function UpdatePostTemplate({ post }: UpdatePostTemplateProps) {
     }
   };
 
+  if (!post) {
+    return (
+      <Wrapper>
+        <p>Post não foi encontrado.</p>
+      </Wrapper>
+    );
+  }
+
   return (
     <Wrapper>
       <FormPost onSave={handleSave} post={post} />
