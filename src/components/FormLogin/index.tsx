@@ -5,6 +5,7 @@ import { Password } from '@styled-icons/material-outlined/Password';
 import { TextInput } from '../TextInput';
 import * as Styled from './styles';
 import { Button } from '../Button';
+import Link from 'next/link';
 
 export type FormLoginProps = {
   errorMessage?: string;
@@ -47,6 +48,14 @@ export const FormLogin = ({ errorMessage, onLogin }: FormLoginProps) => {
         icon={<Password />}
         required
       />
+
+      <Link href="/signup">
+        <a>Criar conta</a>
+      </Link>
+
+      <Link href="/forgot-password">
+        <a>Esqueci minha senha</a>
+      </Link>
 
       {!!errorMessage && (
         <Styled.ErrorMessage>{errorMessage}</Styled.ErrorMessage>

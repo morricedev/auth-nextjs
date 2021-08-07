@@ -1,6 +1,14 @@
 import styled, { css } from 'styled-components';
 
-export const Wrapper = styled.form``;
+export const Wrapper = styled.form`
+  ${({ theme }) => css`
+    a {
+      display: inline-block;
+      margin-bottom: ${theme.spacings.xhuge};
+      margin-right: ${theme.spacings.small};
+    }
+  `}
+`;
 
 export const ButtonWrapper = styled.div``;
 
